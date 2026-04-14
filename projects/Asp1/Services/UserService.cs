@@ -5,23 +5,24 @@ namespace Asp1.Services;
 public class UserService(IUserRepository userRepository) : IUserService
 {
     private IUserRepository _userRepository = userRepository;
+    private IMappingService _mappingService = new MappingService();
+    
+    public Task<List<UserDto>> GetUsersAsync()
+    {
+        return _mappingService.GetUserDto(_userRepository.GetUsersAsync());
+    }
 
-    public Task<List<User>> GetUsersAsync()
+    public Task<UserDto> GetUserAsync(int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<User> GetUserAsync(int id)
+    public Task<UserCreateDto> PostUserAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<User> PostUserAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<User> PutUserAsync(UserDto userDto)
+    public Task<UserUpdateDto> PutUserAsync(UserDto userDto)
     {
         throw new NotImplementedException();
     }

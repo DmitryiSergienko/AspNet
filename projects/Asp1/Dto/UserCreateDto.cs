@@ -2,7 +2,7 @@ namespace Asp1.Dto;
 
 public class UserCreateDto
 {
-    public UserCreateDto(string firstName, string lastName, string email, DateTime dateOfBirth)
+    public UserCreateDto(string? firstName, string? lastName, string? email, DateTime dateOfBirth)
     {
         FirstName = firstName;
         LastName = lastName;
@@ -10,8 +10,8 @@ public class UserCreateDto
         DateOfBirth = dateOfBirth;
     }
 
-    private string FirstName {set;get;}
-    private string LastName {set;get;}
-    private string Email {set;get;}
-    private DateTime DateOfBirth {set;get;}
+    public string? FirstName {set;get;}
+    public string? LastName {set;get;}
+    public string? Email {set;get;}
+    public DateTime DateOfBirth {set;get;}
 }

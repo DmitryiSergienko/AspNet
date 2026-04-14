@@ -2,7 +2,7 @@ namespace Asp1.Dto;
 
 public class UserUpdateDto
 {
-    UserUpdateDto(int id, string firstName, string lastName, string email, DateTime dateOfBirth, bool isActive)
+    UserUpdateDto(int id, string? firstName, string? lastName, string? email, DateTime dateOfBirth, bool isActive)
     {
         Id = id;
         FirstName = firstName;
@@ -11,10 +11,10 @@ public class UserUpdateDto
         DateOfBirth = dateOfBirth;
         IsActive = isActive;
     }
-    private int Id {set;get;}
-    private string FirstName {set;get;}
-    private string LastName {set;get;}
-    private string Email {set;get;}
-    private DateTime DateOfBirth {set;get;}
-    private bool IsActive {set;get;}
+    public int Id {init;get;}
+    public string? FirstName {set;get;}
+    public string? LastName {set;get;}
+    public string? Email {set;get;}
+    public DateTime DateOfBirth {set;get;}
+    public bool IsActive {set;get;}
 }
