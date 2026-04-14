@@ -1,0 +1,7 @@
+﻿services:
+  minimalapis:
+    image: minimalapis
+    build:
+      context: .
+      dockerfile: projects/DZ/MinimalAPIs/Dockerfile
+
