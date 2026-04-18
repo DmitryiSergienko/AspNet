@@ -6,6 +6,6 @@ public class User
     public string? FirstName {set;get;}
     public string? LastName {set;get;}
     public string? Email {set;get;}
-    public DateTime DateOfBirth {set;get;}
+    public DateTimeOffset DateOfBirth {set;get;}
     public bool IsActive {set;get;}
 }

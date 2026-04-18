@@ -1,9 +1,11 @@
 using Asp1.Dto;
 using Asp1.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Asp1.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class UsersController(IUserService userService) : Controller
