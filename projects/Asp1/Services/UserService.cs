@@ -1,39 +1,37 @@
 using Asp1.Dto;
+using Asp1.Repositories;
 
 namespace Asp1.Services;
 
 public class UserService(IUserRepository userRepository) : IUserService
 {
-    private IUserRepository _userRepository = userRepository;
-    private IMappingService _mappingService = new MappingService();
+    private readonly IMappingService _mappingService = new MappingService();
     
-    public Task<List<UserDto>> GetUsersAsync()
+    public async Task<List<UserDto>> GetUsersAsync() =>
+        _mappingService.GetUsers(await userRepository.GetUsersAsync());
+
+    public async Task<UserDto> GetUserAsync(int id)
     {
-        return _mappingService.GetUserDto(_userRepository.GetUsersAsync());
+        var user = await userRepository.GetUserAsync(id);
+        if (user != null) return _mappingService.GetUser(user);
+        return null;
+    }
+        
+    
+    public async Task<UserDto> PostUserAsync(UserCreateDto userCreateDto)
+    {
+        var user = await userRepository.AddtUserAsync(_mappingService.GetUserCreate(userCreateDto));
+        return _mappingService.GetUser(user);
     }
 
-    public Task<UserDto> GetUserAsync(int id)
+    public async Task<UserDto> PutUserAsync(UserUpdateDto userUpdateDto)
     {
-        throw new NotImplementedException();
+        var user = await userRepository.GetUserUpdateAsync(_mappingService.GetUserUpdate(userUpdateDto));
+        return _mappingService.GetUser(user);
     }
 
-    public Task<UserCreateDto> PostUserAsync()
-    {
-        throw new NotImplementedException();
-    }
+    public async Task DeleteUserAsync(UserUpdateDto userUpdateDto) =>
+        await userRepository.GetUserDeleteAsync(_mappingService.GetUserUpdate(userUpdateDto));
 
-    public Task<UserUpdateDto> PutUserAsync(UserDto userDto)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task DeleteUserAsync(UserDto userDto)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task PostActivateAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task PostActivateAsync(int id) => await userRepository.GetUserActiveAsync(id);
 }

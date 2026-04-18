@@ -1,6 +1,61 @@
 @Asp1_HostAddress = http://localhost:8080
 
-GET {{Asp1_HostAddress}}/weatherforecast/
-Accept: application/json
+###
+GET http://localhost:8080/users/index/
+Content-Type: application/json
 
 ###
+POST http://localhost:8080/users/create/
+//Accept: application/json
+Content-Type: application/json
+
+{
+   "first_name": "Bob",
+   "last_name": "Dasa",
+   "email": "test@test.test",
+   "date_of_birth": "2026-04-16T12:00:00Z"
+}
+
+###
+POST http://localhost:8080/users/create/
+//Accept: application/json
+Content-Type: application/json
+
+{
+  "first_name": "Biba",
+  "last_name": "Boba",
+  "email": "test2@test2.test",
+  "date_of_birth": "2026-04-16T12:00:00Z"
+}
+
+###
+DELETE http://localhost:8080/users/delete/
+Content-Type: application/json
+
+{
+    "id": 1,
+    "first_name": "Bob",
+    "last_name": "Dasa",
+    "email": "test@test.test",
+    "date_of_birth": "0001-01-01T00:00:00",
+    "is_active": false
+}
+
+###
+PUT http://localhost:8080/users/edit/
+Content-Type: application/json
+
+{
+    "id": 2,
+    "first_name": "AAAA",
+    "last_name": "BBBB",
+    "email": "test@test.test",
+    "date_of_birth": "0001-01-01T00:00:00",
+    "is_active": false
+}
+
+###
+GET http://localhost:8080/users/details/1
+
+###
+POST http://localhost:8080/users/activate/2

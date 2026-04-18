@@ -6,7 +6,12 @@ public class MappingService : IMappingService
 {
     public List<UserDto> GetUsers(List<User> users)
     {
-        
+        List<UserDto> usersDto = new List<UserDto>();
+        foreach (var user in users)
+        {
+            usersDto.Add(GetUser(user));
+        }
+        return usersDto;
     }
 
     public UserDto GetUser(User user)
@@ -19,18 +24,6 @@ public class MappingService : IMappingService
         user.DateOfBirth = user.DateOfBirth;
         user.IsActive = user.IsActive;
         return userDto;
-    }
-    
-    public User GetUser(UserDto userDto)
-    {
-        User user = new User();
-        user.Id = userDto.Id;
-        user.FirstName = userDto.FirstName;
-        user.LastName = userDto.LastName;
-        user.Email = userDto.Email;
-        user.DateOfBirth = userDto.DateOfBirth;
-        user.IsActive = userDto.IsActive;
-        return user;
     }
     
     public User GetUserCreate(UserCreateDto userCreateDto)

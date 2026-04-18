@@ -1,7 +1,36 @@
-﻿services:
-  minimalapis:
-    image: minimalapis
-    build:
-      context: .
-      dockerfile: projects/DZ/MinimalAPIs/Dockerfile
+﻿#services:
+#  minimalapis:
+#    image: minimalapis
+#    build:
+#      context: .
+#      dockerfile: projects/DZ/MinimalAPIs/Dockerfile
+#
+#  asp1:
+#    image: asp1
+#    build:
+#      context: .
+#      dockerfile: projects/Asp1/Dockerfile
 
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: Users_Db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

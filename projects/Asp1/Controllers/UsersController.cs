@@ -25,26 +25,26 @@ public class UsersController(IUserService userService) : Controller
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> Create()
+    public async Task<IActionResult> Create(UserCreateDto userCreateDto)
     {
-        var user = await userService.PostUserAsync();
+        var user = await userService.PostUserAsync(userCreateDto);
         if (ModelState.IsValid) return Ok(user);
         return BadRequest();
     }
 
     [HttpPut("edit")]
-    public async Task<IActionResult> Edit(UserDto userDto)
+    public async Task<IActionResult> Edit(UserUpdateDto userUpdateDto)
     {
-        var user = await userService.PutUserAsync(userDto);
+        var user = await userService.PutUserAsync(userUpdateDto);
         if (ModelState.IsValid) return Ok(user);
         return BadRequest();
     }
 
     [HttpDelete("delete")]
-    public async Task<IActionResult> Delete(UserDto userDto)
+    public async Task<IActionResult> Delete(UserUpdateDto userUpdateDto)
     {
         if (!ModelState.IsValid) return BadRequest();
-        await userService.DeleteUserAsync(userDto);
+        await userService.DeleteUserAsync(userUpdateDto);
         return Ok();
     }
 
