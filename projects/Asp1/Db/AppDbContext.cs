@@ -19,4 +19,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     //         }
     //     );
     // }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<User>().HasIndex(user => user.Email).IsUnique();
+        modelBuilder.Entity<User>().Property(user => user.Role).HasConversion<string>();
+    }
 }
